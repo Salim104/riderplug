@@ -4,7 +4,9 @@
       "Bash(mkdir -p \"c:/work/riderplug/src/app/\\(auth\\)/sign-in/[[...rest]]\")",
       "Bash(mv \"c:/work/riderplug/src/app/\\(auth\\)/sign-in/page.tsx\" \"c:/work/riderplug/src/app/\\(auth\\)/sign-in/[[...rest]]/page.tsx\")",
       "Bash(mkdir -p \"c:/work/riderplug/src/app/\\(auth\\)/sign-up/[[...rest]]\")",
-      "Bash(mv \"c:/work/riderplug/src/app/\\(auth\\)/sign-up/page.tsx\" \"c:/work/riderplug/src/app/\\(auth\\)/sign-up/[[...rest]]/page.tsx\")"
+      "Bash(mv \"c:/work/riderplug/src/app/\\(auth\\)/sign-up/page.tsx\" \"c:/work/riderplug/src/app/\\(auth\\)/sign-up/[[...rest]]/page.tsx\")",
+      "Bash(npm run *)",
+      "Bash(npm uninstall *)"
     ]
   }
 }

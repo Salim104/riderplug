@@ -1,13 +1,8 @@
-"use client"
-
 import Link from "next/link"
-import { useUser, UserButton } from "@clerk/nextjs"
 import { buttonVariants } from "@/components/ui/button"
 import { ShoppingBag } from "lucide-react"
 
 export function Navbar() {
-  const { isSignedIn, isLoaded } = useUser()
-
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6">
@@ -26,22 +21,12 @@ export function Navbar() {
         </nav>
 
         <div className="flex items-center gap-3">
-          {isLoaded && (
-            <>
-              {isSignedIn ? (
-                <div className="flex items-center gap-3">
-                  <Link href="/dashboard" className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                    Dashboard
-                  </Link>
-                  <UserButton />
-                </div>
-              ) : (
-                <Link href="/sign-in" className={buttonVariants({ size: "sm" })}>
-                  Sign In
-                </Link>
-              )}
-            </>
-          )}
+          <Link href="/dashboard" className="hidden sm:block text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+            Dashboard
+          </Link>
+          <Link href="/sign-in" className={buttonVariants({ size: "sm" })}>
+            Sign In
+          </Link>
         </div>
       </div>
     </header>

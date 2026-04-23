@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id             String   @id @default(cuid())
+  clerkId        String?  @unique
+  displayName    String
+  email          String   @unique
+  whatsappNumber String?
+  zone           String?
+  avatar         String?
+  verified       Boolean  @default(false)
+  createdAt      DateTime @default(now())
+
+  listings        Listing[]
+  ratingsGiven    Rating[]  @relation("BuyerRatings")
+  ratingsReceived Rating[]  @relation("SellerRatings")
+}
+
+model Listing {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  price       Float
+  category    String
+  photos      String[]
+  zone        String
+  lat         Float?
+  lng         Float?
+  condition   String
+  status      String   @default("active")
+  sellerId    String
+  buyerId     String?
+  createdAt   DateTime @default(now())
+
+  seller  User     @relation(fields: [sellerId], references: [id])
+  ratings Rating[]
+}
+
+model Rating {
+  id        String   @id @default(cuid())
+  listingId String
+  sellerId  String
+  buyerId   String
+  stars     Int
+  comment   String?
+  createdAt DateTime @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id])
+  seller  User    @relation("SellerRatings", fields: [sellerId], references: [id])
+  buyer   User    @relation("BuyerRatings", fields: [buyerId], references: [id])
+}

@@ -1,7 +1,5 @@
-"use client"
-
-import { SignUp } from "@clerk/nextjs"
 import { ShoppingBag } from "lucide-react"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 
 export function SignUpCard() {
   return (
@@ -14,23 +12,17 @@ export function SignUpCard() {
         <p className="text-sm text-muted-foreground">Join SA&apos;s marketplace for delivery riders</p>
       </div>
 
-      <SignUp
-        appearance={{
-          elements: {
-            rootBox: "w-full",
-            card: "shadow-md rounded-xl border border-border w-full",
-            headerTitle: "text-lg font-semibold",
-            headerSubtitle: "text-sm text-muted-foreground",
-            socialButtonsBlockButton:
-              "border border-border bg-background hover:bg-muted text-foreground font-medium h-10 rounded-lg",
-            formButtonPrimary:
-              "bg-primary hover:bg-primary/90 text-primary-foreground font-medium h-10 rounded-lg w-full",
-            formFieldInput:
-              "border border-input bg-background h-10 rounded-lg px-3 text-sm focus-visible:ring-2 focus-visible:ring-ring/50",
-            footerActionLink: "text-primary hover:text-primary/80 font-medium",
-          },
-        }}
-      />
+      <Card className="shadow-md">
+        <CardHeader>
+          <CardTitle>Create account</CardTitle>
+          <CardDescription>Registration coming soon.</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <p className="text-sm text-muted-foreground">
+            Sign up will be available once the backend is connected.
+          </p>
+        </CardContent>
+      </Card>
     </div>
   )
 }

@@ -2,12 +2,9 @@
 
 import { useState } from "react"
 import { useRouter } from "next/navigation"
-import { useUser } from "@clerk/nextjs"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
-import { useMutation } from "convex/react"
-import { anyApi } from "convex/server"
 import { ZONES } from "@/lib/zones"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -39,46 +36,23 @@ const schema = z.object({
 
 type ProfileSetupValues = z.infer<typeof schema>
 
-function formatWhatsApp(raw: string): string {
-  const digits = raw.replace(/\D/g, "")
-  if (digits.startsWith("0")) return `27${digits.slice(1)}`
-  if (digits.startsWith("27")) return digits
-  return `27${digits}`
-}
-
 export function ProfileSetupForm() {
   const router = useRouter()
-  const { user } = useUser()
-  const updateProfile = useMutation(anyApi.users.updateProfile)
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const form = useForm<ProfileSetupValues>({
     resolver: zodResolver(schema),
     defaultValues: {
-      displayName: user?.firstName
-        ? [user.firstName, user.lastName].filter(Boolean).join(" ")
-        : "",
+      displayName: "",
       zone: "",
       whatsappNumber: "",
     },
   })
 
-  async function onSubmit(values: ProfileSetupValues) {
-    if (!user?.id) return
+  async function onSubmit(_values: ProfileSetupValues) {
     setIsSubmitting(true)
-    try {
-      await updateProfile({
-        clerkId: user.id,
-        displayName: values.displayName,
-        zone: values.zone,
-        whatsappNumber: formatWhatsApp(values.whatsappNumber),
-      })
-      router.push("/")
-    } catch {
-      form.setError("root", { message: "Something went wrong. Please try again." })
-    } finally {
-      setIsSubmitting(false)
-    }
+    // TODO: persist to backend when auth/db is connected
+    router.push("/dashboard")
   }
 
   return (
@@ -144,10 +118,6 @@ export function ProfileSetupForm() {
                 </FormItem>
               )}
             />
-
-            {form.formState.errors.root && (
-              <p className="text-sm text-destructive">{form.formState.errors.root.message}</p>
-            )}
 
             <Button type="submit" className="w-full" disabled={isSubmitting}>
               {isSubmitting ? "Saving..." : "Save and continue"}
