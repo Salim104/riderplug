@@ -1,28 +1,31 @@
-# Current Feature: Prisma Schema + Seed Data
+# Current Feature: Seller Dashboard
 
 ## Feature File
-`context/features/prisma-schema-seed.md`
+`context/features/dashboard.md`
 
 ## What to Build
-1. `prisma/schema.prisma` — User, Listing, Rating models with relations
-2. `src/lib/db.ts` — Prisma client singleton
-3. `prisma/seed.ts` — seed script (2 users, 20 listings, 5 ratings)
-4. Update `package.json` — add prisma seed config
-5. Install `ts-node` as dev dependency
+1. `src/lib/currency.ts` — ZAR formatter
+2. `src/lib/mock-user.ts` — hardcoded mock seller ID (grab Thabo's cuid from Prisma Studio)
+3. `src/app/actions/listings.ts` — server actions: getSellerListings, deleteListing, markAsSold, getSellerStats
+4. `src/components/shared/navbar.tsx` — shared navbar (RiderPlug branding)
+5. `src/components/shared/footer.tsx` — shared footer (RiderPlug branding)
+6. `src/components/shared/breadcrumb.tsx` — reusable breadcrumb
+7. `src/app/(dashboard)/layout.tsx` — dashboard layout
+8. `src/components/dashboard/stats-row.tsx` — 4 stat cards
+9. `src/components/dashboard/listing-skeleton.tsx` — loading skeleton
+10. `src/components/dashboard/listing-row.tsx` — single listing row
+11. `src/components/dashboard/delete-modal.tsx` — delete confirmation modal
+12. `src/components/dashboard/mark-sold-modal.tsx` — mark as sold confirmation modal
+13. `src/components/dashboard/listings-tabs.tsx` — Active / Sold tabs
+14. `src/app/(dashboard)/dashboard/page.tsx` — dashboard page
 
 ## Build Order
-Build in the order listed above. Run migrations and seed after all files are ready.
-
-## Commands to Run After Build
-```bash
-npx prisma migrate dev --name init
-npx prisma generate
-npx prisma db seed
-npx prisma studio
-```
+Build in the order listed above — utilities first, then actions, then shared components, then dashboard components, then page.
 
 ## Design Reference
-- No UI — backend only
+- Screenshot: `context/pencil-designs/dashboard.png`
+- Light grey background, white stat cards, blue tabs underline, ZAR currency
+- Brand name: RiderPlug (not RiderPlugs or RiderGear)
 
 ## Status
 `Complete`
