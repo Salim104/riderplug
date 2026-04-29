@@ -8,7 +8,8 @@
       "Bash(npm run *)",
       "Bash(npm uninstall *)",
       "Bash(echo \"\")",
-      "Bash(echo \"NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=\")"
+      "Bash(echo \"NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=\")",
+      "Bash(npx shadcn@latest add dropdown-menu --yes)"
     ]
   }
 }

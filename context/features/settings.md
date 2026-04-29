@@ -118,7 +118,7 @@ Reused lib:
 - [ ] npm run build passes
 
 ## Status
-Not Started
+Done
 
 ## Notes
 - Email is read only — hardcoded as Thabo's email in Phase 1, comes from Clerk in Phase 2
@@ -127,3 +127,6 @@ Not Started
 - Settings is under (dashboard) route group — same layout as dashboard pages
 
 ## History
+
+### 2026-04-29 — Built
+All 5 files created. Installed `sonner` for toasts. WhatsApp number stored as 27XXXXXXXXX, displayed as 0XXXXXXXXX. Avatar upload uses CldUploadWidget wrapped with `dynamic(..., { ssr: false })`. `npm run build` passes.

@@ -36,7 +36,12 @@ export function ListingRow({ listing, showMarkSold = false }: ListingRowProps) {
     <>
       <div className="flex items-center gap-3 sm:gap-4 px-4 py-3 border-b last:border-b-0">
         {/* Thumbnail */}
-        <div className="size-14 shrink-0 rounded-md overflow-hidden bg-muted">
+        <Link
+          href={`/listings/${listing.id}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="size-14 shrink-0 rounded-md overflow-hidden bg-muted"
+        >
           {thumbnail ? (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -47,11 +52,18 @@ export function ListingRow({ listing, showMarkSold = false }: ListingRowProps) {
           ) : (
             <div className="size-full bg-gray-200 rounded-md" />
           )}
-        </div>
+        </Link>
 
         {/* Details */}
         <div className="flex-1 min-w-0">
-          <p className="font-medium text-sm truncate">{listing.title}</p>
+          <Link
+            href={`/listings/${listing.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-sm truncate hover:underline block"
+          >
+            {listing.title}
+          </Link>
           <p className="text-sm font-semibold text-primary mt-0.5">
             {formatZAR(listing.price)}
           </p>
